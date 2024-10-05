@@ -1,8 +1,6 @@
 import random
 import string
 
-a= list(string.ascii_lowercase)
-
 st = input('enter the message:')
 
 words = st.split(" ")
@@ -13,13 +11,11 @@ print(Coding)
 if(Coding):
     nwords = []
     for word in words:
-        if(len(word)>=5):
-            r1 = random.choice(a)
-            # r2 = random.choice(a)
-            stnew = r1 + word[1:] + word[0] + r1
-            nwords.append(stnew)
-        else:
-            nwords.append(word[::-1])
+        r1 = random.choice(string.ascii_lowercase)
+        r2 = str(random.randint(0,9))
+        stnew = r1 + word[1:] + r2 + word[0] + r1
+        nwords.append(stnew)
+        
     newwords = " ".join(nwords)
     print(newwords)
     with open('myfile.txt','w') as a:
@@ -29,30 +25,31 @@ if(Coding):
 else:
     nwords = []
     for word in words:
-        if len(word)>=5:
-            stnew= word[1:-1]
-            stnew= stnew[-1] + stnew[:-1]
-            nwords.append(stnew)
-        else:
-            nwords.append(word[::-1])
+        stnew = word[1:-1]
+        stnew = stnew[-1] + stnew[:-1]
+        stnew = stnew[:-1]
+        nwords.append(stnew)
+        
     print(" ".join(nwords))
 
 with open('myfile.txt','r')as e:
     to_decode = e.read()
 asked = input("enter Yes to decode and No to exit:")
-asked = True if (asked == 'Yes') else False
+asked = True if (asked == 'yes') else False
 print(asked)
 if(asked):
 
     decode_word = [ ]
     for word in to_decode.split(" "):
-        if len(word) >=5:
-            stnew = word[1:-1]
-            stnew = stnew[-1] + stnew[:-1]
-            decode_word.append(stnew)
-        else:
-            decode_word.append(word[::-1])
+        # if len(word) >=5:
+        stnew = word[1:-1]
+        stnew = stnew[-1] + stnew[:-1]
+        stnew = stnew[:-1]
+        decode_word.append(stnew)
+        
     to_decode = " ".join(decode_word)
     print(to_decode)
+    with open('myfile.txt', 'a')as k:
+        a.write == decode_word
 else:
-    print('the program is completed...')
+    print('the coding is completed...')
